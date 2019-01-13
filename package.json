@@ -97,6 +97,10 @@
 					"light": "resources/light/run.svg",
 					"dark": "resources/dark/run.svg"
 				}
+			},
+			{
+				"command": "extension.openProject",
+				"title": "打开项目"
 			}
 		],
 		"menus": {
@@ -172,6 +176,10 @@
 				{
 					"command": "extension.remove",
 					"when": "view == genaretorCode && viewItem == template"
+				},
+				{
+					"command": "extension.openProject",
+					"when": "view == genaretorCode && viewItem == root"
 				}
 			]
 		}

@@ -46,6 +46,13 @@ export function activate(context: vscode.ExtensionContext) {
 		utils.genaretorFile();
 	});
 
+	const cmd = vscode.commands.registerCommand('extension.openProject', function (d) {
+		const folderName = d.path + '/' + d.label;
+		const folderUrl = vscode.Uri.file(folderName);
+		vscode.commands.executeCommand("vscode.openFolder", folderUrl, true);
+	});
+
+	context.subscriptions.push(cmd);
 	vscode.window.registerTreeDataProvider('genaretorCode', mainProvider);
 }
 
