@@ -368,11 +368,13 @@ export class Utils {
         });
         if (flag) {
             this.output.show();
-            d.forEach(f => {
+            d.forEach((f, i) => {
                 this.fse.outputFileSync(f.file, f.content, 'utf8');
                 this.output.appendLine(`${this.getNowTime()}文件[${f.file}]生成成功!`);
+                if (i === d.length - 1) {
+                    vscode.window.showInformationMessage('生成成功!');
+                }
             });
-            vscode.window.showInformationMessage('生成成功!');
         }
     }
 
@@ -396,7 +398,7 @@ export class Utils {
             try {
                 const content = eval(`function init() {const content = \`${fs.readFileSync(file, 'utf8').replace(/\$/g, '\\\$').replace(/\`/g, '\\\`')}\`;` + fs.readFileSync(root + '/.genaretor/template/' + node.template, 'utf8') + '}init();');
                 if (content === undefined) {
-                    vscode.window.showWarningMessage('请使用[module.exports]定义输出内容!');
+                    vscode.window.showWarningMessage('请使用[return]定义输出内容!');
                     return false;
                 } else {
                     fs.writeFileSync(root + '/.genaretor/template/' + node.render, content, 'utf8');
