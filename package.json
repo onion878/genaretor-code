@@ -1,0 +1,184 @@
+{
+	"name": "genaretor-code",
+	"displayName": "genaretor-code",
+	"description": "genaretor code from template",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:genaretorCode"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "genaretor-code",
+					"title": "代码生成工具",
+					"icon": "media/code.svg"
+				}
+			]
+		},
+		"views": {
+			"genaretor-code": [
+				{
+					"id": "genaretorCode",
+					"name": "模板"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "extension.newTemplate",
+				"title": "新建添加模板",
+				"icon": {
+					"light": "resources/light/new.svg",
+					"dark": "resources/dark/new.svg"
+				}
+			},
+			{
+				"command": "extension.newUpdateTemplate",
+				"title": "新建修改模板",
+				"icon": {
+					"light": "resources/light/newUpdate.svg",
+					"dark": "resources/dark/newUpdate.svg"
+				}
+			},
+			{
+				"command": "extension.newFolder",
+				"title": "新建模板文件夹",
+				"icon": {
+					"light": "resources/light/newFolder.svg",
+					"dark": "resources/dark/newFolder.svg"
+				}
+			},
+			{
+				"command": "extension.rename",
+				"title": "重命名"
+			},
+			{
+				"command": "extension.remove",
+				"title": "删除"
+			},
+			{
+				"command": "extension.setProjectFolder",
+				"title": "设置生成路径"
+			},
+			{
+				"command": "extension.review",
+				"title": "预览代码",
+				"icon": {
+					"light": "resources/light/preview.svg",
+					"dark": "resources/dark/preview.svg"
+				}
+			},
+			{
+				"command": "extension.genaretorFile",
+				"title": "生成代码",
+				"icon": {
+					"light": "resources/light/run.svg",
+					"dark": "resources/dark/run.svg"
+				}
+			}
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"command": "extension.review",
+					"group": "navigation"
+				}
+			],
+			"view/title": [
+				{
+					"command": "extension.newFolder",
+					"when": "view == genaretorCode",
+					"group": "navigation"
+				},
+				{
+					"command": "extension.genaretorFile",
+					"when": "view == genaretorCode",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "extension.newTemplate",
+					"when": "view == genaretorCode && viewItem == folder"
+				},
+				{
+					"command": "extension.newUpdateTemplate",
+					"when": "view == genaretorCode && viewItem == folder"
+				},
+				{
+					"command": "extension.newFolder",
+					"when": "view == genaretorCode && viewItem == folder",
+					"group": "inline"
+				},
+				{
+					"command": "extension.rename",
+					"when": "view == genaretorCode && viewItem == folder"
+				},
+				{
+					"command": "extension.remove",
+					"when": "view == genaretorCode && viewItem == folder"
+				},
+				{
+					"command": "extension.newTemplate",
+					"when": "view == genaretorCode && viewItem == root"
+				},
+				{
+					"command": "extension.newUpdateTemplate",
+					"when": "view == genaretorCode && viewItem == root"
+				},
+				{
+					"command": "extension.newFolder",
+					"when": "view == genaretorCode && viewItem == root",
+					"group": "inline"
+				},
+				{
+					"command": "extension.setProjectFolder",
+					"when": "view == genaretorCode && viewItem == root"
+				},
+				{
+					"command": "extension.rename",
+					"when": "view == genaretorCode && viewItem == root"
+				},
+				{
+					"command": "extension.remove",
+					"when": "view == genaretorCode && viewItem == root"
+				},
+				{
+					"command": "extension.rename",
+					"when": "view == genaretorCode && viewItem == template"
+				},
+				{
+					"command": "extension.remove",
+					"when": "view == genaretorCode && viewItem == template"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25",
+		"tslint": "^5.8.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"ejs": "^2.6.1",
+		"fs-extra": "^7.0.1",
+		"lowdb": "^1.0.0"
+	}
+}
