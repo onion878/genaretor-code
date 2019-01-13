@@ -357,22 +357,25 @@ export class Utils {
         templates.some((t: any) => {
             const file = this.renderName(data, t.file);
             const result = this.compileTemplate(t, data, file);
-            console.log(file);
             if (result === false) {
                 flag = false;
                 return true;
             } else {
-                d.push({ file: file, content: result });
+                d.push({ file: file, content: result, flag: t.type });
                 return false;
             }
         });
         if (flag) {
             this.output.show();
             d.forEach((f, i) => {
-                this.fse.outputFileSync(f.file, f.content, 'utf8');
-                this.output.appendLine(`${this.getNowTime()}文件[${f.file}]生成成功!`);
+                if (f.flag === 'add' && fs.existsSync(f.file)) {
+                    this.output.appendLine(`${this.getNowTime()} 文件[${f.file}](添加)已经存在, 无需生成!`);
+                } else {
+                    this.fse.outputFileSync(f.file, f.content, 'utf8');
+                    this.output.appendLine(`${this.getNowTime()} 文件[${f.file}]生成成功!`);
+                }
                 if (i === d.length - 1) {
-                    vscode.window.showInformationMessage('生成成功!');
+                    this.output.appendLine(`${this.getNowTime()} 执行完成!`);
                 }
             });
         }
