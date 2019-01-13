@@ -3,6 +3,7 @@
 	"displayName": "genaretor-code",
 	"description": "genaretor code from template",
 	"version": "1.1.0",
+	"publisher": "genaretor-code",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
