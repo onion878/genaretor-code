@@ -55,6 +55,14 @@
 				}
 			},
 			{
+				"command": "extension.newProject",
+				"title": "新建项目",
+				"icon": {
+					"light": "resources/light/newProject.svg",
+					"dark": "resources/dark/newProject.svg"
+				}
+			},
+			{
 				"command": "extension.newFolder",
 				"title": "新建模板文件夹",
 				"icon": {
@@ -100,7 +108,7 @@
 			],
 			"view/title": [
 				{
-					"command": "extension.newFolder",
+					"command": "extension.newProject",
 					"when": "view == genaretorCode",
 					"group": "navigation"
 				},

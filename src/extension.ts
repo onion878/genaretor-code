@@ -12,6 +12,8 @@ export function activate(context: vscode.ExtensionContext) {
 	const utils = new Utils();
 
 	const mainProvider = new GenaretorCode(utils);
+	vscode.commands.registerCommand('extension.newProject', d => utils.createFolder(mainProvider, d));
+
 	vscode.commands.registerCommand('extension.newFolder', d => utils.createFolder(mainProvider, d));
 
 	vscode.commands.registerCommand('extension.newTemplate', d => utils.createFile(mainProvider, d));
