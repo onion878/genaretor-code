@@ -17,6 +17,7 @@
 	"activationEvents": [
 		"onView:genaretorCode"
 	],
+	"icon": "media/code.png",
 	"main": "./out/extension.js",
 	"contributes": {
 		"viewsContainers": {
